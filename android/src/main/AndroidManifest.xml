@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.superstore.bas_pay_flutter">
+    <application>
+        <activity android:name=".BasActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
+    </application>
+</manifest>
