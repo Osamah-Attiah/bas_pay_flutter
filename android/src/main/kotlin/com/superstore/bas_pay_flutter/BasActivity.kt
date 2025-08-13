@@ -34,7 +34,8 @@ class BasActivity : ComponentActivity() {
                         messageJson["fullName"],
                         messageJson["language"],
                         messageJson["platform"],
-                        messageJson["product"],
+                        product = messageJson["product"],
+                        onReturnDataToIOS = null
                     )
                 }
             }
