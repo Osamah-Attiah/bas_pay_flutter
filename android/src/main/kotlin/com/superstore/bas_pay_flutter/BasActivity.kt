@@ -34,6 +34,7 @@ class BasActivity : ComponentActivity() {
                         messageJson["fullName"],
                         messageJson["language"],
                         messageJson["platform"],
+                        messageJson["product"],
                     )
                 }
             }
