@@ -6,12 +6,14 @@ class InitBasSdkModel {
   String? fullName;
   String? language;
   final String platform;
+  String? product;
 
   InitBasSdkModel({
     required this.trxToken,
     this.userIdentifier,
     this.fullName,
     this.language,
+    this.product,
   }) : platform = "Flutter";
 
 
@@ -22,6 +24,7 @@ class InitBasSdkModel {
     data[InitBasSdkModelFields.fullName] = fullName;
     data[InitBasSdkModelFields.language] = language;
     data[InitBasSdkModelFields.platform] = platform;
+    data[InitBasSdkModelFields.product] = product;
     return data;
   }
 
@@ -34,4 +37,5 @@ abstract class InitBasSdkModelFields {
   static const String fullName = 'fullName';
   static const String language = 'language';
   static const String platform = 'platform';
+  static const String product = 'product';
 }
