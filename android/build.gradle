@@ -66,10 +66,10 @@ android {
         testImplementation("org.mockito:mockito-core:5.0.0")
         implementation(name: 'bas_pay-release', ext: 'aar')
 //        implementation(name: 'BankySDKManager-release', ext: 'aar')
-//        implementation(name: 'BankySDK-release', ext: 'aar'){
-//            exclude group: "com.squareup.okhttp3", module: 'okhttp3'
-//            exclude group: "androidx.localbroadcastmanager:localbroadcastmanager", module: 'androidx.localbroadcastmanager'
-//        }
+        implementation('com.ykb.banky.bankysdkmanager:BankySDKManager-release@aar'){
+            exclude group: "com.squareup.okhttp3", module: 'okhttp3'
+            exclude group: "androidx.localbroadcastmanager:localbroadcastmanager", module: 'androidx.localbroadcastmanager'
+        }
         implementation 'androidx.appcompat:appcompat:1.4.1'
         implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
         implementation "com.squareup.okhttp3:okhttp:4.8.0"
