@@ -22,19 +22,12 @@ class MethodChannelBasPayFlutter extends BasPayFlutterPlatform {
       return (resultStatus: false, resultModel: null);
     }
     try {
-      final resultModel = ResultModel.fromJson(jsonDecode(result));
+      final resultModel = ResultModel.fromJson(result);
       return (resultStatus: true, resultModel: resultModel);
     }catch (e){
       return (resultStatus: false, resultModel: null);
     }
 
-
-    // final String modelJson = jsonEncode(model.toJson());
-    // final Map<String, String> arguments = {
-    //   'com.superstore.bas_pay_flutter.EXTRA_INPUT_MESSAGE': modelJson,
-    // };
-    // final result = await methodChannel.invokeMapMethod<String, String>('callBasPay', modelJson);
-    // return (result ?? "").toString();
   }
 
 }

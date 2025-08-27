@@ -7,6 +7,7 @@ import androidx.compose.ui.platform.ComposeView
 import com.superstore.bas_pay.*
 import android.content.Intent
 import kotlinx.serialization.json.Json
+//import android.util.Log
 
 class BasActivity : ComponentActivity() {
 //    private val basMain = BasMain()
@@ -21,6 +22,7 @@ class BasActivity : ComponentActivity() {
 
 //        val inputMessage = intent?.getStringExtra(BasActivityContract.EXTRA_INPUT_MESSAGE) ?: "No input message"
         val message = intent?.getExtras()?.getString("message")
+//        Log.d("message ::::", "${message}")
 //        val messageJson = json.decodeFromString<Map<String, String?>>(inputMessage as String)
         val messageJson = json.decodeFromString<Map<String, String?>>(message as String)
 

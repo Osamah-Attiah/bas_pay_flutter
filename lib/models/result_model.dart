@@ -1,26 +1,52 @@
 
+import 'dart:convert' show jsonDecode;
 
 class ResultModel {
-  final bool status;
-  final String message;
-  final dynamic result;
-  final int code;
 
+  final dynamic response;
 
-  ResultModel({
-    required this.status,
-    required this.message,
-    required this.result,
-    required this.code,
-  });
+  ResultModel({required this.response});
 
-  factory ResultModel.fromJson(Map<String, dynamic> json) {
+  factory ResultModel.fromJson(dynamic json) {
+    Map<String, dynamic> data = {};
+    if(json is Map<String, dynamic>){
+      data = json;
+    }else if(json is String){
+      data = jsonDecode(json);
+    }
     return ResultModel(
-      status:  bool.tryParse(json[ResultModelFields.status]) ?? false,
-      message: json[ResultModelFields.message],
-      result: json[ResultModelFields.result],
-      code:  int.tryParse(json[ResultModelFields.code]) ?? 699,
+      response: data,
     );
+  }
+
+  int get _statusCode => 699;
+
+  bool get status {
+    if(!response.containsKey(ResultModelFields.status)){
+      return false;
+    }
+    return _handleStatus(response[ResultModelFields.status]);
+  }
+
+  String get message {
+    if(!response.containsKey(ResultModelFields.message)){
+      return "";
+    }
+    return response[ResultModelFields.message];
+  }
+
+  dynamic get result {
+    if(!response.containsKey(ResultModelFields.result)){
+      return null;
+    }
+    return response[ResultModelFields.result];
+  }
+
+  int get code {
+    if(!response.containsKey(ResultModelFields.code)){
+      return _statusCode;
+    }
+    return _handleCode(response[ResultModelFields.code]);
   }
 
   Map<String, dynamic> toJson() {
@@ -30,6 +56,36 @@ class ResultModel {
     data[ResultModelFields.result] = result;
     data[ResultModelFields.code] = code;
     return data;
+  }
+
+  bool _handleStatus(dynamic status) {
+    if(status is bool){
+      return status;
+    }
+    if(status is String){
+      return bool.tryParse(status) ?? false;
+      // return status.toLowerCase() == "true";
+    }
+    if(status is int){
+      return status == 1;
+    }
+    if(status is double){
+      return status == 1.0;
+    }
+    return false;
+  }
+
+  int _handleCode(dynamic code) {
+    if(code is int){
+      return code;
+    }
+    if(code is String){
+      return int.tryParse(code) ?? _statusCode;
+    }
+    if(code is double){
+      return code.toInt() ?? _statusCode;
+    }
+    return _statusCode;
   }
 
 }

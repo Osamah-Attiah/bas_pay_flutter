@@ -41,6 +41,7 @@ import io.flutter.plugin.common.MethodChannel.Result
 
 import android.os.Bundle
 import io.flutter.plugin.common.PluginRegistry
+//import android.util.Log
 //import io.flutter.plugin.common.PluginRegistry.Registrar
 //import io.flutter.app.FlutterActivity
 //import io.flutter.plugins.GeneratedPluginRegistrant
@@ -121,6 +122,8 @@ class BasPayFlutterPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Plug
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
 
     val resultFromIntent = data?.getStringExtra("result") ?: "errr"
+//    Log.d("result ::::", "${data?.getStringExtra("result")}")
+//    Log.d("resultFromIntent ::::", "${resultFromIntent}")
     pendingResult?.success(resultFromIntent)
 
     return true
